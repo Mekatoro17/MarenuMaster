@@ -18,7 +18,7 @@ const sans = Inter({
 export const metadata: Metadata = {
   title: "MARENÚ | De Chinú para el mundo",
   description:
-    "Marca colombiana de origen Chinú, Córdoba. Sandalias para mujer elaboradas en Chinú.",
+    "Marca colombiana de origen Chinú, Córdoba. Calzado con diseño, comodidad y origen auténtico.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
