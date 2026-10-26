@@ -1,28 +1,28 @@
 import Image from "next/image";
 import Link from "next/link";
-import { officialLogo } from "@/lib/brand";
+import { logos } from "@/lib/brand";
 
-// Wordmark provisional con tilde terracota; se sustituye por el logotipo oficial en lib/brand.ts.
-export default function Logo({ light = false }: { light?: boolean }) {
+export default function Logo({
+  light = false,
+  variant = "horizontal",
+}: {
+  light?: boolean;
+  variant?: "horizontal" | "vertical";
+}) {
+  const logo = logos[variant];
   return (
     <Link
       href="/"
-      className={`logo${light ? " logo-light" : ""}`}
+      className={`logo logo-${variant}${light ? " logo-light" : ""}`}
       aria-label="MARENÚ, inicio"
     >
-      {officialLogo ? (
-        <Image
-          src={officialLogo.src}
-          width={officialLogo.width}
-          height={officialLogo.height}
-          alt="MARENÚ"
-          priority
-        />
-      ) : (
-        <span aria-hidden="true">
-          MAREN<span className="logo-u">U</span>
-        </span>
-      )}
+      <Image
+        src={logo.src}
+        width={logo.width}
+        height={logo.height}
+        alt="MARENÚ, origen Chinú, Córdoba, Colombia"
+        priority
+      />
     </Link>
   );
 }

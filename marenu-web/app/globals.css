@@ -145,35 +145,31 @@ ul {
 }
 
 .logo {
-  font-family: var(--font-serif), Georgia, serif;
-  font-size: 1.9rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  color: var(--color-leather);
-  text-decoration: none;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.logo-light {
-  color: var(--color-ivory);
-}
-
-.logo-u {
-  position: relative;
   display: inline-block;
+  line-height: 0;
 }
 
-.logo-u::after {
-  content: "";
-  position: absolute;
-  top: -0.28em;
-  right: -0.12em;
-  width: 0.34em;
-  height: 0.2em;
-  background: var(--color-terracotta);
-  border-radius: 100% 0 100% 0;
-  transform: rotate(-12deg);
+.logo img {
+  width: auto;
+}
+
+.logo-horizontal img {
+  height: 46px;
+}
+
+.logo-vertical img {
+  height: 120px;
+}
+
+.logo-light img {
+  filter: brightness(0) invert(1);
+  opacity: 0.92;
+}
+
+@media (min-width: 900px) {
+  .logo-horizontal img {
+    height: 54px;
+  }
 }
 
 .nav-desktop {
