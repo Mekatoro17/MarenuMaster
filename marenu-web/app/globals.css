@@ -780,6 +780,76 @@ ul {
   color: var(--color-forest);
 }
 
+.status-error {
+  color: var(--color-terracotta);
+}
+
+.size-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0.75rem 0 1.5rem;
+}
+
+.size-options label {
+  position: relative;
+  cursor: pointer;
+}
+
+.size-options input {
+  position: absolute;
+  opacity: 0;
+}
+
+.size-options span {
+  display: grid;
+  place-items: center;
+  min-width: 3rem;
+  height: 3rem;
+  border: 1px solid var(--color-leather);
+  color: var(--color-leather);
+  transition: background 0.2s, color 0.2s;
+}
+
+.size-options input:checked + span {
+  background: var(--color-leather);
+  color: var(--color-ivory);
+}
+
+.size-options input:focus-visible + span {
+  outline: 3px solid var(--color-terracotta);
+  outline-offset: 3px;
+}
+
+.qty-row {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.85rem;
+}
+
+.button-whatsapp {
+  width: 100%;
+  margin-top: 1rem;
+  background: var(--color-forest);
+  border-color: var(--color-forest);
+  color: var(--color-ivory);
+}
+
+.button-whatsapp:hover {
+  background: var(--color-charcoal);
+  border-color: var(--color-charcoal);
+}
+
+.notice {
+  margin: 1rem 0 0;
+  padding: 0.9rem 1rem;
+  font-size: 0.9rem;
+  background: rgb(46 74 59 / 0.1);
+  border-left: 3px solid var(--color-forest);
+}
+
 /* Carrito */
 .cart-empty {
   padding-block: 2rem;

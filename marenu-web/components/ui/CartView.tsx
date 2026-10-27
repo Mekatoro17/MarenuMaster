@@ -2,19 +2,38 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import ButtonLink from "@/components/ui/ButtonLink";
 import { TrashIcon } from "@/components/ui/Icons";
+import { whatsappNumber } from "@/lib/config";
 import { formatPrice, getProduct } from "@/lib/mock-products";
 import { useCart } from "@/lib/use-cart";
+import {
+  buildWhatsAppMessage,
+  buildWhatsAppUrl,
+  orderTotal,
+  type OrderLine,
+} from "@/lib/whatsapp";
+
+const NOT_READY =
+  "Estamos preparando nuestro canal de WhatsApp. Por el momento, puedes consultar los detalles de tu pedido en el carrito.";
 
 export default function CartView() {
   const { items, setQty, remove } = useCart();
+  const [notice, setNotice] = useState(false);
 
   const lines = items.flatMap((item) => {
     const product = getProduct(item.slug);
     return product ? [{ item, product }] : [];
   });
-  const subtotal = lines.reduce((s, l) => s + l.product.price * l.item.qty, 0);
+  const orderLines: OrderLine[] = lines.map(({ item, product }) => ({
+    name: product.name,
+    size: item.size,
+    color: item.color,
+    qty: item.qty,
+    unitPrice: product.price,
+  }));
+  const subtotal = orderTotal(orderLines);
 
   if (!lines.length) {
     return (
@@ -31,7 +50,10 @@ export default function CartView() {
     <div className="cart-layout">
       <ul className="cart-lines">
         {lines.map(({ item, product }) => (
-          <li key={`${item.slug}-${item.color}`} className="cart-line">
+          <li
+            key={`${item.slug}-${item.color}-${item.size}`}
+            className="cart-line"
+          >
             <Link href={`/producto/${product.slug}`} className="cart-thumb">
               <Image
                 src={product.image.src}
@@ -42,7 +64,9 @@ export default function CartView() {
             </Link>
             <div className="cart-line-info">
               <h3>{product.name}</h3>
-              <p className="muted">Color: {item.color}</p>
+              <p className="muted">
+                {item.size ? `Talla: ${item.size} · ` : ""}Color: {item.color}
+              </p>
               <p>{formatPrice(product.price)}</p>
             </div>
             <div
@@ -82,13 +106,41 @@ export default function CartView() {
       <aside className="cart-summary">
         <h2>Resumen</h2>
         <p className="summary-row">
-          <span>Subtotal (demostración)</span>
+          <span>Total provisional de productos</span>
           <strong>{formatPrice(subtotal)}</strong>
         </p>
         <p className="muted">
-          El pago y el envío aún no están disponibles. El checkout se
-          implementará en la siguiente etapa.
+          El envío y el total definitivo se confirman con MARENÚ. Abrir
+          WhatsApp no confirma tu pedido ni reserva inventario.
         </p>
+
+        {whatsappNumber ? (
+          <a
+            className="button button-whatsapp"
+            href={buildWhatsAppUrl(
+              whatsappNumber,
+              buildWhatsAppMessage(orderLines),
+            )}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Finalizar compra por WhatsApp
+          </a>
+        ) : (
+          <button
+            type="button"
+            className="button button-whatsapp"
+            aria-describedby={notice ? "whatsapp-aviso" : undefined}
+            onClick={() => setNotice(true)}
+          >
+            Finalizar compra por WhatsApp
+          </button>
+        )}
+        {notice && !whatsappNumber && (
+          <p id="whatsapp-aviso" className="notice" role="status">
+            {NOT_READY}
+          </p>
+        )}
       </aside>
     </div>
   );

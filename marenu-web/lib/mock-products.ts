@@ -19,6 +19,7 @@ export type Product = {
   category: CategorySlug;
   price: number;
   colors: ProductColor[];
+  sizes: string[];
   image: SiteImage;
   description: string;
 };
@@ -48,6 +49,8 @@ export const categories: Category[] = [
   },
 ];
 
+const demoSizes = ["35", "36", "37", "38", "39", "40"];
+
 export const products: Product[] = [
   {
     slug: "sandalia-aura",
@@ -59,6 +62,7 @@ export const products: Product[] = [
       { name: "Café", hex: "#6B4A2E" },
       { name: "Carbón", hex: "#1F1F1F" },
     ],
+    sizes: demoSizes,
     image: images.productoAura,
     description:
       "Sandalia de tiras de cuero, ligera y versátil. Producto de demostración.",
@@ -73,6 +77,7 @@ export const products: Product[] = [
       { name: "Cuero", hex: "#8a5a35" },
       { name: "Carbón", hex: "#1F1F1F" },
     ],
+    sizes: demoSizes,
     image: images.productoAlma,
     description:
       "Sandalia de tiras cruzadas pensada para el uso diario. Producto de demostración.",
@@ -86,6 +91,7 @@ export const products: Product[] = [
       { name: "Cuero", hex: "#8a5a35" },
       { name: "Café", hex: "#6B4A2E" },
     ],
+    sizes: demoSizes,
     image: images.productoEsencial,
     description:
       "Calzado de cuero de líneas limpias para cada ocasión. Producto de demostración.",
@@ -100,6 +106,7 @@ export const products: Product[] = [
       { name: "Terracota", hex: "#B65A3C" },
       { name: "Carbón", hex: "#1F1F1F" },
     ],
+    sizes: demoSizes,
     image: images.productoAbarca,
     description:
       "Pieza de origen inspirada en la tradición del calzado de Chinú. Producto de demostración.",

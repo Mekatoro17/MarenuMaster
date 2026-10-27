@@ -1,4 +1,4 @@
-export type CartItem = { slug: string; color: string; qty: number };
+export type CartItem = { slug: string; color: string; size: string; qty: number };
 
 const KEY = "marenu-cart";
 const EMPTY: CartItem[] = [];
@@ -9,7 +9,13 @@ function read(): CartItem[] {
   try {
     const raw = window.localStorage.getItem(KEY);
     const parsed: unknown = raw ? JSON.parse(raw) : [];
-    return Array.isArray(parsed) ? (parsed as CartItem[]) : [];
+    if (!Array.isArray(parsed)) return [];
+    return parsed.map((i: Partial<CartItem>) => ({
+      slug: String(i.slug),
+      color: String(i.color),
+      size: typeof i.size === "string" ? i.size : "",
+      qty: Number(i.qty) || 1,
+    }));
   } catch {
     return [];
   }
