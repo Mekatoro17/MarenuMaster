@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Logo from "@/components/ui/Logo";
-import { descriptor } from "@/lib/brand";
+import { marca } from "@/lib/brand-copy";
 import { images } from "@/lib/images";
 
 export default function Footer() {
@@ -11,8 +11,8 @@ export default function Footer() {
       <div className="container footer-grid">
         <div>
           <Logo light />
-          <p className="footer-descriptor">{descriptor}</p>
-          <p className="footer-tagline">De Chinú para el mundo.</p>
+          <p className="footer-descriptor">{marca.descriptor}</p>
+          <p className="footer-tagline">{marca.lema}</p>
         </div>
         <nav aria-label="Pie de página">
           <h4>Explorar</h4>

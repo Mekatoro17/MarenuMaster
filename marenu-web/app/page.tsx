@@ -3,6 +3,14 @@ import ButtonLink from "@/components/ui/ButtonLink";
 import CategoryCard from "@/components/ui/CategoryCard";
 import ProductCard from "@/components/ui/ProductCard";
 import { GemIcon, HandIcon, LeafIcon, TruckIcon } from "@/components/ui/Icons";
+import {
+  filosofia,
+  marca,
+  origen,
+  posicionamiento,
+  producto,
+  proposito,
+} from "@/lib/brand-copy";
 import { images } from "@/lib/images";
 import { categories, products } from "@/lib/mock-products";
 
@@ -27,22 +35,27 @@ export default function Home() {
         />
         <div className="hero-overlay" />
         <div className="container hero-content">
-          <p className="eyebrow eyebrow-light">Hecho en Chinú</p>
-          <h1>MARENÚ</h1>
-          <p className="hero-phrase">Origen que se lleva contigo.</p>
-          <p className="hero-desc">
-            Calzado con diseño, comodidad y origen auténtico.
-          </p>
+          <p className="eyebrow eyebrow-light">{marca.etiquetaHero}</p>
+          <h1>{marca.nombre}</h1>
+          <p className="hero-phrase">{marca.mensajeHero}</p>
+          <p className="hero-desc">{marca.lema}</p>
           <ButtonLink href="/catalogo" arrow>
             Descubrir colección
           </ButtonLink>
         </div>
       </section>
 
+      <section className="intro container narrow">
+        <p className="eyebrow">{filosofia.artesaniaContemporanea}</p>
+        <p className="intro-text">{posicionamiento}</p>
+        <p className="muted">{filosofia.modernoNoBorra}</p>
+      </section>
+
       <section className="section container">
         <div className="section-heading">
           <p className="eyebrow">Nuestras colecciones</p>
-          <h2>Piezas con un origen extraordinario.</h2>
+          <h2>{producto.coleccionesTitulo}</h2>
+          <p className="muted">{producto.coleccionesSubtitulo}</p>
         </div>
         <div className="category-grid">
           {categories.map((c) => (
@@ -58,7 +71,8 @@ export default function Home() {
       <section className="section container">
         <div className="section-heading">
           <p className="eyebrow">Piezas destacadas</p>
-          <h2>Donde cada pieza cuenta una historia.</h2>
+          <h2>{producto.seleccionTitulo}</h2>
+          <p className="muted">{producto.seleccionFrase}</p>
         </div>
         <div className="product-grid">
           {products.map((p) => (
@@ -86,12 +100,9 @@ export default function Home() {
             <path d="M60 155C60 95 70 50 100 8M60 120c-25-8-40-25-45-50 25 5 42 20 45 50ZM64 95c22-6 34-20 38-42-22 4-36 18-38 42Z" />
           </svg>
           <p className="eyebrow">Nuestro origen</p>
-          <h2>Chinú vive en cada pieza.</h2>
-          <p>
-            En MARENÚ creemos en el valor de nuestras raíces. Queremos
-            visibilizar el talento, los oficios y la tradición de Chinú,
-            conectando a quienes crean nuestros productos con nuevos mercados.
-          </p>
+          <h2>{origen.titulo}</h2>
+          <p className="origin-second">{origen.secundaria}</p>
+          <p>{proposito}</p>
           <ButtonLink href="/origen#historia" variant="outline" arrow>
             Conoce nuestra historia
           </ButtonLink>

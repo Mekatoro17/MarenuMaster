@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import AddToCart from "@/components/ui/AddToCart";
+import { filosofia, origen, pendiente } from "@/lib/brand-copy";
 import {
   formatPrice,
   getCategory,
@@ -11,6 +12,9 @@ import {
 } from "@/lib/mock-products";
 
 type Params = { slug: string };
+
+const pieceFacts = ["Materiales", "Tallas y calce", "Cuidados"];
+const originFacts = ["Lugar de elaboración", "Productor", "Proceso"];
 
 export function generateStaticParams() {
   return products.map((p) => ({ slug: p.slug }));
@@ -63,6 +67,37 @@ export default async function ProductoPage({
           </p>
           <AddToCart product={product} />
         </div>
+      </div>
+
+      <div className="detail-sections">
+        <section>
+          <h2>La pieza</h2>
+          <p>{filosofia.material}</p>
+          <p className="calce">{filosofia.calce}</p>
+          <dl className="facts">
+            {pieceFacts.map((f) => (
+              <div key={f}>
+                <dt>{f}</dt>
+                <dd>{pendiente}</dd>
+              </div>
+            ))}
+          </dl>
+        </section>
+        <section>
+          <h2>El origen</h2>
+          <p>{origen.secundaria}</p>
+          <dl className="facts">
+            {originFacts.map((f) => (
+              <div key={f}>
+                <dt>{f}</dt>
+                <dd>{pendiente}</dd>
+              </div>
+            ))}
+          </dl>
+          <Link href="/origen" className="text-link">
+            Conocer el origen
+          </Link>
+        </section>
       </div>
     </div>
   );

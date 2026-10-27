@@ -1,17 +1,18 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import ButtonLink from "@/components/ui/ButtonLink";
-import { descriptor } from "@/lib/brand";
+import {
+  filosofia,
+  marca,
+  origen,
+  pendiente,
+  posicionamiento,
+  principio,
+  proposito,
+} from "@/lib/brand-copy";
 import { images } from "@/lib/images";
 
 export const metadata: Metadata = { title: "Origen | MARENÚ" };
-
-const phrases = [
-  "Chinú, en cada pieza.",
-  "Hecho en Chinú, hecho con historia.",
-  "De nuestras manos a las tuyas.",
-  "Donde cada pieza cuenta una historia.",
-];
 
 export default function OrigenPage() {
   return (
@@ -27,39 +28,48 @@ export default function OrigenPage() {
         />
         <div className="hero-overlay" />
         <div className="container hero-content">
-          <p className="eyebrow eyebrow-light">{descriptor}</p>
-          <h1>Origen</h1>
-          <p className="hero-phrase">De Chinú para el mundo.</p>
+          <p className="eyebrow eyebrow-light">{marca.descriptor}</p>
+          <h1>{origen.titulo}</h1>
+          <p className="hero-phrase">{origen.secundaria}</p>
         </div>
       </section>
 
       <section id="historia" className="section container narrow">
         <p className="eyebrow">Nuestra historia</p>
-        <h2>Chinú vive en cada pieza.</h2>
-        <p>
-          MARENÚ es una marca colombiana de origen que nace en Chinú, Córdoba.
-          Queremos visibilizar el talento, los oficios y la tradición de Chinú,
-          llevando sus productos a nuevos mercados y conectando a quienes los
-          crean con nuevos clientes y oportunidades.
-        </p>
-        <p>
-          Comenzamos con sandalias para mujer elaboradas en Chinú. Más adelante
-          podremos incorporar otros tipos de calzado, accesorios y productos de
-          origen. No somos un marketplace genérico: seleccionamos por origen,
-          calidad, diseño, comodidad y autenticidad.
-        </p>
-        <p className="quote">No inventamos el origen. Lo hacemos visible.</p>
+        <h2>{marca.lema}</h2>
+        <p>{posicionamiento}</p>
+        <p>{proposito}</p>
+        <blockquote className="quote">
+          {principio.frase}
+          <footer>{principio.compromiso}</footer>
+        </blockquote>
       </section>
 
-      <section className="phrases">
-        <ul className="container">
-          {phrases.map((p) => (
-            <li key={p}>{p}</li>
+      <section className="band">
+        <div className="container narrow">
+          <p className="eyebrow eyebrow-light">{filosofia.artesaniaContemporanea}</p>
+          <h2>{filosofia.modernoNoBorra}</h2>
+          <p>{filosofia.estandarSeleccion}</p>
+          <p>{filosofia.dosMetros}</p>
+        </div>
+      </section>
+
+      <section className="section container narrow">
+        <p className="eyebrow">Productores</p>
+        <h2>{origen.productoresTitulo}</h2>
+        <p>{origen.productoresPendiente}</p>
+        <ul className="pending-list" aria-label="Información de cada pieza">
+          {origen.tag.map((q) => (
+            <li key={q}>
+              <span>{q}</span>
+              <em>{pendiente}</em>
+            </li>
           ))}
         </ul>
       </section>
 
       <section className="section container center">
+        <h2>{origen.cierre}</h2>
         <ButtonLink href="/catalogo" arrow>
           Descubrir colección
         </ButtonLink>
